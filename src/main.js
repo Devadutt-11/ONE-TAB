@@ -13,10 +13,11 @@ fetch(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`)
     }
     document.querySelector("#app").innerHTML = `
       <h3>${data.title}</h3>
-      ${media}
+     
       
     `;
-    document.querySelector("#explanation").innerHTML = `<p>${data.explanation}</p>`;
+    document.querySelector("#content").innerHTML = `<p>${data.explanation}</p>`;
+    document.querySelector("#background").innerHTML = `${media}`;
   })
   .catch((error) => {
     document.querySelector("#app").innerHTML = `<p>Error loading data: ${error.message}</p>`;

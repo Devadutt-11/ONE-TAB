@@ -18,7 +18,8 @@ p {
     top: 20px;
     right: 20px;
     width: 300px;
-    padding: 10px;
+    height: 250px;
+    padding: 20px;
     background-color: #32269D;
     color: #fff;
     font-weight: bold;
@@ -27,4 +28,14 @@ p {
 #explanation h3 {
     font-family: Andale Mono, monospace;
     color: rgb(130, 1, 1);
+}
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    z-index: -1;
 }
