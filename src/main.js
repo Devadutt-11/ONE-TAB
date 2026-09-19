@@ -3,5 +3,9 @@ document.querySelector("#app").innerHTML = "<p>Loading...</p>";
 fetch(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`)
     .then((response) => response.json())
     .then(data => {
-        console.log(data);
-})
+        document .querySelector("#app").innerHTML = `
+        <h3>${data.title}</h3>
+        <img src="${data.url}" />
+        <p>${data.explanation}</p>
+        `;
+    })
