@@ -3,13 +3,22 @@ document.querySelector("#app").innerHTML = "<p>Loading...</p>";
 fetch(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`)
   .then((response) => response.json())
   .then((data) => {
-    const media = data.media_type === "image"
-      ? `<img src="${data.url}" alt="${data.title}">`
-      : `<video src="${data.url}" controls></video>`;
-
+    let media;
+    if (data.media_type === "image") {
+        media = `<img src="${data.url}" alt="${data.title}" />`;
+    } else if (data.media_type === "video") {
+        media = `<iframe src="${data.url}" controls></iframe>`;
+    } else {
+        media = `<video src="${data.url}" controls></video>`;    
+    }
     document.querySelector("#app").innerHTML = `
       <h3>${data.title}</h3>
       ${media}
-      <p>${data.explanation}</p>
+      
     `;
+    document.querySelector("#explanation").innerHTML = `<p>${data.explanation}</p>`;
+  })
+  .catch((error) => {
+    document.querySelector("#app").innerHTML = `<p>Error loading data: ${error.message}</p>`;
   });
+  
