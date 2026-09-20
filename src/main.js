@@ -1,5 +1,5 @@
 const API_KEY = import.meta.env.VITE_NASA_API_KEY;
-document.querySelector("#app").innerHTML = "<p>Loading...</p>";
+document.querySelector("#app").innerHTML = "";
 fetch(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`)
   .then((response) => response.json())
   .then((data) => {
@@ -27,13 +27,17 @@ fetch(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`)
     var timeText = document.querySelector('#datetime');
     timeText.innerHTML = currentTime;
 }
-function updateTime() {
-    var currentTime = new Date().toLocaleString();
-    var timeText = document.querySelector('#datetime');
-    timeText.innerHTML = currentTime;
-}
-setInterval(function() {
-    document.querySelector('#datetime').innerHTML = new Date().toLocaleString();
-}, 1000);
+updateTime();
+setInterval(updateTime,1000);
+document.querySelector("#searchbox input").addEventListener('keydown', function(e) {
+ if (e.key === 'Enter') {
+  const query = encodeURIComponent(this.value);
+  window.open(`https://www.google.com/search?q=${query}`, '_blank');
+  }
+});
+ 
+    
+
+
 
   
